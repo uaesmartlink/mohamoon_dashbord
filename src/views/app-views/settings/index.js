@@ -121,60 +121,7 @@ const Settings = () => {
   function onFinishFailed(error) {
     openNotificationError(error);
   }
-/*
-  const columns = [
-    {
-      title: "Image",
-      dataIndex: "imageUrl",
-      key: "name",
-      render: (_, record) => (
-        <Flex>
-          <AvatarStatus
-            size={30}
-            src={record.imageUrl}
-            name={record.fileName}
-          />
-        </Flex>
-      ),
-    },
-    {
-      title: "Image File Name",
-      dataIndex: "fileName",
-      key: "fileName",
-    },
-    {
-      title: "Date Added",
-      dataIndex: "createdAt",
-      key: "dateAdded",
-    },
-    {
-      title: "Action",
-      dataIndex: "",
-      key: "x",
-      render: (text, record) => (
-        <Space size="middle">
-          <Button
-            icon={<EditOutlined />}
-            shape="circle"
-            onClick={() =>
-              history.push({
-                pathname:
-                  `new-image-carousel` + record.id + "/" + record.categoryName,
-              })
-            }
-          ></Button>
-          <Button
-            onClick={() => showConfirmDelete(record.id, record.imageUrl)}
-            icon={<DeleteOutlined />}
-            shape="circle"
-          />
-        </Space>
-      ),
-    },
-  ];
-
-  */
-  return (
+return (
     <div>
       <Card>
         <Tabs defaultActiveKey="1">
