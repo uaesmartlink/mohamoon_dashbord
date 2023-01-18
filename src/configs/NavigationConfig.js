@@ -26,21 +26,21 @@ const usersNavTree = [
     submenu: [],
   },
 ];
-const DoctorsNavTree = [
+const LawyersNavTree = [
   {
-    key: "doctors",
-    path: `${APP_PREFIX_PATH}/doctors`,
-    title: "Doctors",
+    key: "lawyers",
+    path: `${APP_PREFIX_PATH}/lawyers`,
+    title: "Lawyers",
     icon: UserOutlined,
     breadcrumb: false,
     submenu: [],
   },
 ];
-const DoctorCategoryNavTree = [
+const LawyerCategoryNavTree = [
   {
-    key: "doctor-category",
-    path: `${APP_PREFIX_PATH}/doctor-category`,
-    title: "Doctor Category",
+    key: "lawyer-category",
+    path: `${APP_PREFIX_PATH}/lawyer-category`,
+    title: "Lawyer Category",
     icon: UserOutlined,
     breadcrumb: false,
     submenu: [],
@@ -94,8 +94,8 @@ const SettingsNavTree = [
 const navigationConfig = [
   ...dashBoardNavTree,
   ...usersNavTree,
-  ...DoctorsNavTree,
-  ...DoctorCategoryNavTree,
+  ...LawyersNavTree,
+  ...LawyerCategoryNavTree,
   ...WithdrawNavTree,
   ...ChargeNavTree,
   ...TransactionNavTree,

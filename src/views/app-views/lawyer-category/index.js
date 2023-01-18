@@ -1,7 +1,7 @@
 import { Card, Table, Space, Button, Modal, message } from "antd";
 import { useEffect } from "react";
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
-import { fetchDoctorCategoryInit } from "redux/actions/DoctorCategory";
+import { fetchLawyerCategoryInit } from "redux/actions/LawyerCategory";
 import Flex from "components/shared-components/Flex";
 
 import AvatarStatus from "components/shared-components/AvatarStatus";
@@ -14,16 +14,16 @@ import {
 } from "@ant-design/icons";
 import FirebaseService from "services/FirebaseService";
 const { confirm } = Modal;
-const DoctorCategory = () => {
+const LawyerCategory = () => {
   const {
-     doctorCategoryList,
+     lawyerCategoryList,
      loading 
     } = useSelector(
     (state) => ({
-      doctorCategoryList: state.doctorCategory.data,
-      error: state.doctorCategory.error,
-      loading: state.doctorCategory.loading,
-      delete: state.doctorCategory.delete,
+      lawyerCategoryList: state.lawyerCategory.data,
+      error: state.lawyerCategory.error,
+      loading: state.lawyerCategory.loading,
+      delete: state.lawyerCategory.delete,
     }),
     shallowEqual
   );
@@ -31,7 +31,7 @@ const DoctorCategory = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchDoctorCategoryInit());
+    dispatch(fetchLawyerCategoryInit());
   }, [dispatch]);
 
   const columns = [
@@ -71,7 +71,7 @@ const DoctorCategory = () => {
             onClick={() =>
               history.push({
                 pathname:
-                  "new-doctor-category/" +
+                  "new-lawyer-category/" +
                   record.id +
                   "/" +
                   record.categoryName +
@@ -99,19 +99,19 @@ const DoctorCategory = () => {
       title: `Do you want to delete ${categoryName} category.?"`,
       icon: <ExclamationCircleOutlined />,
       content:
-        "if you delete this category, the doctor who has selected this category may not be found in the category list",
+        "if you delete this category, the lawyer who has selected this category may not be found in the category list",
       onOk() {
-        deleteDoctorCategory(documentId);
+        deleteLawyerCategory(documentId);
       },
       onCancel() {},
     });
   }
 
-  const deleteDoctorCategory = async (id) => {
+  const deleteLawyerCategory = async (id) => {
     try {
-      await FirebaseService.removeDoctorCategory(id);
-      message.success("success deleted doctor category");
-      dispatch(fetchDoctorCategoryInit());
+      await FirebaseService.removeLawyerCategory(id);
+      message.success("success deleted lawyer category");
+      dispatch(fetchLawyerCategoryInit());
     } catch (error) {
       message.error(error.message);
     }
@@ -121,11 +121,11 @@ const DoctorCategory = () => {
   
   return (
     <Card
-      title="Doctor Category"
+      title="Lawyer Category"
       extra={
         <Space>
           <Button icon={<PlusOutlined />}>
-            <Link to={"new-doctor-category"}>Add Doctor Category</Link>
+            <Link to={"new-lawyer-category"}>Add Lawyer Category</Link>
           </Button>
         </Space>
       }
@@ -134,7 +134,7 @@ const DoctorCategory = () => {
       <Table
         pagination={false}
         columns={columns}
-        dataSource={doctorCategoryList}
+        dataSource={lawyerCategoryList}
         rowKey="id"
         loading={loading}
       />
@@ -142,4 +142,4 @@ const DoctorCategory = () => {
   );
 };
 
-export default DoctorCategory;
+export default LawyerCategory;

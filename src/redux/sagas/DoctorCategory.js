@@ -1,27 +1,27 @@
 import { all, takeEvery, put, fork, call } from "redux-saga/effects";
 import {
-  fetchDoctorCategoryFail,
-  fetchDoctorCategorySuccess,
-} from "redux/actions/DoctorCategory";
+  fetchLawyerCategoryFail,
+  fetchLawyerCategorySuccess,
+} from "redux/actions/LawyerCategory";
 
-import { DOCTOR_CATEGORY_FETCH_INIT } from "redux/constants/DoctorCategory";
+import { LAWYER_CATEGORY_FETCH_INIT } from "redux/constants/LawyerCategory";
 
 import FirebaseService from "services/FirebaseService";
 
-export function* getDoctorCategory() {
-  yield takeEvery(DOCTOR_CATEGORY_FETCH_INIT, function* () {
+export function* getLawyerCategory() {
+  yield takeEvery(LAWYER_CATEGORY_FETCH_INIT, function* () {
     try {
-      const doctorCategory = yield call(
+      const lawyerCategory = yield call(
         FirebaseService.fetchCollection,
-        "DoctorCategory"
+        "LawyerCategory"
       );
-      yield put(fetchDoctorCategorySuccess(doctorCategory));
+      yield put(fetchLawyerCategorySuccess(lawyerCategory));
     } catch (error) {
-      yield put(fetchDoctorCategoryFail(error));
+      yield put(fetchLawyerCategoryFail(error));
     }
   });
 }
 
 export default function* rootSaga() {
-  yield all([fork(getDoctorCategory)]);
+  yield all([fork(getLawyerCategory)]);
 }

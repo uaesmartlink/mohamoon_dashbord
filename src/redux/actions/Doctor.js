@@ -1,60 +1,60 @@
 import {
-  SET_DOCTOR_ACCOUNT_STATUS_INIT,
-  SET_DOCTOR_ACCOUNT_STATUS_SUCCESS,
-  SET_DOCTOR_ACCOUNT_STATUS_ERROR,
-  DELETE_DOCTOR_INIT,
-  DELETE_DOCTOR_SUCCESS,
-  DELETE_DOCTOR_ERROR,
-  ADD_TOP_RATED_DOCTOR_INIT,
-  ADD_TOP_RATED_DOCTOR_SUCCESS,
-  ADD_TOP_RATED_DOCTOR_ERROR,
+  SET_LAWYER_ACCOUNT_STATUS_INIT,
+  SET_LAWYER_ACCOUNT_STATUS_SUCCESS,
+  SET_LAWYER_ACCOUNT_STATUS_ERROR,
+  DELETE_LAWYER_INIT,
+  DELETE_LAWYER_SUCCESS,
+  DELETE_LAWYER_ERROR,
+  ADD_TOP_RATED_LAWYER_INIT,
+  ADD_TOP_RATED_LAWYER_SUCCESS,
+  ADD_TOP_RATED_LAWYER_ERROR,
   DELETE_TOP_RATED_INIT,
   DELETE_TOP_RATED_SUCCESS,
   DELETE_TOP_RATED_ERROR,
-  DOCTOR_FETCH_FAIL,
-  DOCTOR_FETCH_INIT,
-  DOCTOR_FETCH_SUCCESS,
-  FETCH_TOP_RATED_DOCTOR_INIT,
-  FETCH_TOP_RATED_DOCTOR_FAIL,
-  FETCH_TOP_RATED_DOCTOR_SUCCESS,
-} from "../constants/Doctor";
+  LAWYER_FETCH_FAIL,
+  LAWYER_FETCH_INIT,
+  LAWYER_FETCH_SUCCESS,
+  FETCH_TOP_RATED_LAWYER_INIT,
+  FETCH_TOP_RATED_LAWYER_FAIL,
+  FETCH_TOP_RATED_LAWYER_SUCCESS,
+} from "../constants/Lawyer";
 
-export const fetchDoctorInit = () => ({
-  type: DOCTOR_FETCH_INIT,
+export const fetchLawyerInit = () => ({
+  type: LAWYER_FETCH_INIT,
 });
 
-export const fetchDoctorSuccess = (data) => ({
-  type: DOCTOR_FETCH_SUCCESS,
+export const fetchLawyerSuccess = (data) => ({
+  type: LAWYER_FETCH_SUCCESS,
   data,
 });
 
-export const fetchDoctorFail = (err) => ({
-  type: DOCTOR_FETCH_FAIL,
+export const fetchLawyerFail = (err) => ({
+  type: LAWYER_FETCH_FAIL,
   err,
 });
 
-export const fetchTopRatedDoctorInit = () => ({
-  type: FETCH_TOP_RATED_DOCTOR_INIT,
+export const fetchTopRatedLawyerInit = () => ({
+  type: FETCH_TOP_RATED_LAWYER_INIT,
 });
 
-export const fetchTopRatedDoctorFail = (topRatedError) => ({
-  type: FETCH_TOP_RATED_DOCTOR_FAIL,
+export const fetchTopRatedLawyerFail = (topRatedError) => ({
+  type: FETCH_TOP_RATED_LAWYER_FAIL,
   topRatedError,
 });
 
-export const fetchTopRatedDoctorSuccess = (topRatedDoctor) => ({
-  type: FETCH_TOP_RATED_DOCTOR_SUCCESS,
-  topRatedDoctor,
+export const fetchTopRatedLawyerSuccess = (topRatedLawyer) => ({
+  type: FETCH_TOP_RATED_LAWYER_SUCCESS,
+  topRatedLawyer,
 });
 
-export const deleteTopRatedInit = (doctorId) => ({
+export const deleteTopRatedInit = (lawyerId) => ({
   type: DELETE_TOP_RATED_INIT,
-  doctorId,
+  lawyerId,
 });
 
-export const deleteTopRatedSuccess = (doctorId) => ({
+export const deleteTopRatedSuccess = (lawyerId) => ({
   type: DELETE_TOP_RATED_SUCCESS,
-  doctorId,
+  lawyerId,
 });
 
 export const deleteTopRatedError = (error) => ({
@@ -62,49 +62,49 @@ export const deleteTopRatedError = (error) => ({
   error,
 });
 
-export const addTopRatedDoctorInit = (doctorId) => ({
-  type: ADD_TOP_RATED_DOCTOR_INIT,
-  doctorId,
+export const addTopRatedLawyerInit = (lawyerId) => ({
+  type: ADD_TOP_RATED_LAWYER_INIT,
+  lawyerId,
 });
 
-export const addTopRatedDoctorSuccess = (doctorId) => ({
-  type: ADD_TOP_RATED_DOCTOR_SUCCESS,
-  doctorId,
+export const addTopRatedLawyerSuccess = (lawyerId) => ({
+  type: ADD_TOP_RATED_LAWYER_SUCCESS,
+  lawyerId,
 });
 
-export const addTopRatedDoctorError = (error) => ({
-  type: ADD_TOP_RATED_DOCTOR_ERROR,
+export const addTopRatedLawyerError = (error) => ({
+  type: ADD_TOP_RATED_LAWYER_ERROR,
   error,
 });
 
-export const deleteDoctorInit = (doctorId) => ({
-  type: DELETE_DOCTOR_INIT,
-  doctorId: doctorId,
+export const deleteLawyerInit = (lawyerId) => ({
+  type: DELETE_LAWYER_INIT,
+  lawyerId: lawyerId,
 });
 
-export const deleteDoctorSuccess = (doctorId) => ({
-  type: DELETE_DOCTOR_SUCCESS,
-  doctorId,
+export const deleteLawyerSuccess = (lawyerId) => ({
+  type: DELETE_LAWYER_SUCCESS,
+  lawyerId,
 });
 
-export const deleteDoctorError = (error) => ({
-  type: DELETE_DOCTOR_ERROR,
+export const deleteLawyerError = (error) => ({
+  type: DELETE_LAWYER_ERROR,
   error,
 });
 
-export const setDoctorAccountStatusInit = (doctorId, status) => ({
-  type: SET_DOCTOR_ACCOUNT_STATUS_INIT,
-  doctorId,
+export const setLawyerAccountStatusInit = (lawyerId, status) => ({
+  type: SET_LAWYER_ACCOUNT_STATUS_INIT,
+  lawyerId,
   status,
 });
 
-export const setDoctorAccountStatusSuccess = (doctorId, status) => ({
-  type: SET_DOCTOR_ACCOUNT_STATUS_SUCCESS,
-  doctorId,
+export const setLawyerAccountStatusSuccess = (lawyerId, status) => ({
+  type: SET_LAWYER_ACCOUNT_STATUS_SUCCESS,
+  lawyerId,
   status,
 });
 
-export const setDoctorAccountStatusError = (error) => ({
-  type: SET_DOCTOR_ACCOUNT_STATUS_ERROR,
+export const setLawyerAccountStatusError = (error) => ({
+  type: SET_LAWYER_ACCOUNT_STATUS_ERROR,
   error,
 });

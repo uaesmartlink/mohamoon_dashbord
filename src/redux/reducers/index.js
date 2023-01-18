@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 import Auth from "./Auth";
 import Theme from "./Theme";
 import Users from "./Users";
-import DoctorCategory from "./DoctorCategory";
-import Doctor from "./Doctor";
+import LawyerCategory from "./LawyerCategory";
+import Lawyer from "./Lawyer";
 import WithdrawRequest from "./WithdrawRequestReducer";
 import Charge from "./ChargeReducer";
 import Transaction from "./TransactionReducer";
@@ -15,8 +15,8 @@ const reducers = combineReducers({
   theme: Theme,
   auth: Auth,
   users: Users,
-  doctorCategory: DoctorCategory,
-  doctor: Doctor,
+  lawyerCategory: LawyerCategory,
+  lawyer: Lawyer,
   withdrawRequest:WithdrawRequest,
 charge:Charge,
 transaction:Transaction,

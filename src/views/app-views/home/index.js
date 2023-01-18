@@ -5,19 +5,19 @@ import DataDisplayWidget from "components/shared-components/DataDisplayWidget";
 import { UserOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import ChartWidget from "components/shared-components/ChartWidget";
-import { getUserCountInit , getDoctorCountInit } from "redux/actions/DashboardActions";
+import { getUserCountInit , getLawyerCountInit } from "redux/actions/DashboardActions";
 const Home = () => {
-  const { userCount, doctorCount } = useSelector(
+  const { userCount, lawyerCount } = useSelector(
     (state) => ({
       userCount: state.dashboard.userData,
       userError: state.dashboard.userError,
       userLoading: state.dashboard.userLoading,
       userDelete: state.dashboard.userDelete,
 
-      doctorCount: state.dashboard.doctorData,
-      doctorError: state.dashboard.doctorError,
-      doctorLoading: state.dashboard.doctorLoading,
-      doctorDelete: state.dashboard.doctorDelete,
+      lawyerCount: state.dashboard.lawyerData,
+      lawyerError: state.dashboard.lawyerError,
+      lawyerLoading: state.dashboard.lawyerLoading,
+      lawyerDelete: state.dashboard.lawyerDelete,
 
     }),
     shallowEqual
@@ -28,7 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getUserCountInit());
-    dispatch(getDoctorCountInit());
+    dispatch(getLawyerCountInit());
   }, [dispatch]);
   const visitorChartData = {
     series: [
@@ -75,8 +75,8 @@ const Home = () => {
             <Col xs={24} sm={24} md={24} lg={24} xl={8}>
               <DataDisplayWidget
                 icon={<UserOutlined />}
-                value={doctorCount}
-                title="Doctor Register"
+                value={lawyerCount}
+                title="Lawyer Register"
                 color="cyan"
                 size={"md"}
                 avatarSize={50}

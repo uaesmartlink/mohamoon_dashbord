@@ -77,9 +77,9 @@ FirebaseService.uploadImage = async (fileName, file) => {
   return url.ref.getDownloadURL();
 };
 
-FirebaseService.addDoctorCategory = async (categoryName, categoryTranslation, iconUrl) => {
+FirebaseService.addLawyerCategory = async (categoryName, categoryTranslation, iconUrl) => {
   try {
-    await db.collection("DoctorCategory").add({
+    await db.collection("LawyerCategory").add({
       categoryName,
       categoryTranslation,
       iconUrl,
@@ -89,32 +89,32 @@ FirebaseService.addDoctorCategory = async (categoryName, categoryTranslation, ic
   }
 };
 
-FirebaseService.getDoctorCategory = async (categoryId) =>{
+FirebaseService.getLawyerCategory = async (categoryId) =>{
      try {
-    await db.collection("DoctorCategory").doc(categoryId).delete();
+    await db.collection("LawyerCategory").doc(categoryId).delete();
   } catch (error) {
     throw error;
   }
 };
 
 
-FirebaseService.removeDoctorCategory = async (categoryId) => {
+FirebaseService.removeLawyerCategory = async (categoryId) => {
   try {
-    await db.collection("DoctorCategory").doc(categoryId).delete();
+    await db.collection("LawyerCategory").doc(categoryId).delete();
   } catch (error) {
     throw error;
   }
 };
 
-FirebaseService.editDoctorCategory = async (id, categoryName,categoryTranslation, iconUrl) => {
+FirebaseService.editLawyerCategory = async (id, categoryName,categoryTranslation, iconUrl) => {
   try {
     if (iconUrl == null) {
-      await db.collection("DoctorCategory").doc(id).update({
+      await db.collection("LawyerCategory").doc(id).update({
         categoryName,
         categoryTranslation,
       });
     } else {
-      await db.collection("DoctorCategory").doc(id).set({
+      await db.collection("LawyerCategory").doc(id).set({
         categoryName,
         categoryTranslation,
         iconUrl,
@@ -125,16 +125,16 @@ FirebaseService.editDoctorCategory = async (id, categoryName,categoryTranslation
   }
 };
 
-FirebaseService.removeTopRatedDoctor = async (topRatedId) => {
+FirebaseService.removeTopRatedLawyer = async (topRatedId) => {
   try {
     let snapshot = await db
-      .collection("TopRatedDoctor")
-      .where("doctorId", "==", topRatedId)
+      .collection("TopRatedLawyer")
+      .where("lawyerId", "==", topRatedId)
       .get();
     await snapshot.docs.at(0).ref.delete();
   } catch (error) {
     console.log(
-      "🚀 ~ file: FirebaseService.js ~ line 124 ~ FirebaseService.removeTopRatedDoctor= ~ error",
+      "🚀 ~ file: FirebaseService.js ~ line 124 ~ FirebaseService.removeTopRatedLawyer= ~ error",
       error
     );
 
@@ -142,22 +142,22 @@ FirebaseService.removeTopRatedDoctor = async (topRatedId) => {
   }
 };
 
-FirebaseService.addTopRatedDoctor = async (doctorId) => {
+FirebaseService.addTopRatedLawyer = async (lawyerId) => {
   try {
-    await db.collection("TopRatedDoctor").add({ doctorId });
+    await db.collection("TopRatedLawyer").add({ lawyerId });
   } catch (error) {
     throw error;
   }
 };
 
-FirebaseService.deleteDoctorAccount = async (doctorId) => {
+FirebaseService.deleteLawyerAccount = async (lawyerId) => {
   try {
-    var addMessage = firebase.functions().httpsCallable("deleteDoctor");
-    await addMessage({ doctorId: doctorId });
-    console.log("delete doctor");
+    var addMessage = firebase.functions().httpsCallable("deleteLawyer");
+    await addMessage({ lawyerId: lawyerId });
+    console.log("delete lawyer");
   } catch (error) {
     console.log(
-      "🚀 ~ file: FirebaseService.js ~ line 160 ~ FirebaseService.deleteDoctorAccount ~ error",
+      "🚀 ~ file: FirebaseService.js ~ line 160 ~ FirebaseService.deleteLawyerAccount ~ error",
       error
     );
     throw error;
@@ -170,7 +170,7 @@ FirebaseService.deleteUser = async (userId) => {
     console.log("delete user");
   } catch (error) {
     console.log(
-      "🚀 ~ file: FirebaseService.js ~ line 160 ~ FirebaseService.deleteDoctorAccount ~ error",
+      "🚀 ~ file: FirebaseService.js ~ line 160 ~ FirebaseService.deleteLawyerAccount ~ error",
       error
     );
     throw error;
@@ -292,15 +292,15 @@ FirebaseService.markWithdrawalRequestComplete = async (record) => {
     throw error;
   }
 };
-FirebaseService.setDoctorAccountStatus = async (record, status) => {
+FirebaseService.setLawyerAccountStatus = async (record, status) => {
   try {
     await db
-      .collection("Doctors")
+      .collection("Lawyers")
       .doc(record)
       .update({ accountStatus: status });
   } catch (error) {
     console.log(
-      "🚀 ~ file: FirebaseService.js ~ line 240 ~ FirebaseService.setDoctorAccountStatus= ~ error",
+      "🚀 ~ file: FirebaseService.js ~ line 240 ~ FirebaseService.setLawyerAccountStatus= ~ error",
       error
     );
 

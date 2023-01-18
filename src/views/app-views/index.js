@@ -16,28 +16,28 @@ export const AppViews = () => {
           component={lazy(() => import(`./users`))}
         />
         <Route
-          path={`${APP_PREFIX_PATH}/doctor-category`}
-          component={lazy(() => import(`./doctor-category`))}
+          path={`${APP_PREFIX_PATH}/lawyer-category`}
+          component={lazy(() => import(`./lawyer-category`))}
         />
         <Route
-          path={`${APP_PREFIX_PATH}/doctor-category`}
-          component={lazy(() => import(`./doctor-category`))}
+          path={`${APP_PREFIX_PATH}/lawyer-category`}
+          component={lazy(() => import(`./lawyer-category`))}
         />
         <Route
           path={`${APP_PREFIX_PATH}/user`}
           component={lazy(() => import(`./user`))}
         />
         <Route
-          path={`${APP_PREFIX_PATH}/new-doctor-category/:id/:name/:translation`}
-          component={lazy(() => import(`./new-doctor-category`))}
+          path={`${APP_PREFIX_PATH}/new-lawyer-category/:id/:name/:translation`}
+          component={lazy(() => import(`./new-lawyer-category`))}
         />
         <Route
-          path={`${APP_PREFIX_PATH}/new-doctor-category`}
-          component={lazy(() => import(`./new-doctor-category`))}
+          path={`${APP_PREFIX_PATH}/new-lawyer-category`}
+          component={lazy(() => import(`./new-lawyer-category`))}
         />
         <Route
-          path={`${APP_PREFIX_PATH}/doctors`}
-          component={lazy(() => import(`./doctors`))}
+          path={`${APP_PREFIX_PATH}/lawyers`}
+          component={lazy(() => import(`./lawyers`))}
         />
         <Route
           path={`${APP_PREFIX_PATH}/withdra-request`}

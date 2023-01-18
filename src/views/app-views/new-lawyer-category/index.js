@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom";
 import { UploadOutlined } from "@ant-design/icons";
 import FirebaseService from "services/FirebaseService";
 import {
-  doctorCategorySchema,
-  doctorCategorySchemaEditing,
-} from "utils/validation/DoctorCategoryValidation";
+  lawyerCategorySchema,
+  lawyerCategorySchemaEditing,
+} from "utils/validation/LawyerCategoryValidation";
 import { useHistory } from "react-router-dom";
 
-const NewDoctorCategory = () => {
+const NewLawyerCategory = () => {
   const history = useHistory();
   const { id, name, translation} = useParams();
   const isEditing = useMemo(() => !!id, [id]);
@@ -22,30 +22,30 @@ const NewDoctorCategory = () => {
           categoryTranslation: values.categoryTranslation,
           iconUrl: values.category_icon,
         };
-        const isValid = await doctorCategorySchemaEditing.validate(form);
+        const isValid = await lawyerCategorySchemaEditing.validate(form);
         if (isValid) {
           if (!values.category_icon) {
-            await FirebaseService.editDoctorCategory(
+            await FirebaseService.editLawyerCategory(
               id,
               values.categoryName,
               values.categoryTranslation,
               null
             );
-            history.push("/app/doctor-category");
+            history.push("/app/lawyer-category");
           } else {
             let iconUrl = await FirebaseService.uploadImage(
               values.category_icon.file.name,
               values.category_icon.fileList[0].originFileObj
             );
             const form = { categoryName: values.categoryName, categoryTranslation: values.categoryTranslation, iconUrl };
-            await FirebaseService.editDoctorCategory(
+            await FirebaseService.editLawyerCategory(
               id,
               form.categoryName,
               form.categoryTranslation,
               form.iconUrl
             );
 
-            history.push("/app/doctor-category");
+            history.push("/app/lawyer-category");
           }
         }
       } else {
@@ -59,15 +59,15 @@ const NewDoctorCategory = () => {
           categoryTranslation: values.categoryTranslation,
           iconUrl,
         };
-        const isValid = await doctorCategorySchema.validate(form);
+        const isValid = await lawyerCategorySchema.validate(form);
         if (isValid) {
-          await FirebaseService.editDoctorCategory(
+          await FirebaseService.editLawyerCategory(
             id,
             form.categoryName,
             form.categoryTranslation,
             form.iconUrl
           );
-          history.push("/app/doctor-category");
+          history.push("/app/lawyer-category");
         }
       }
     } catch (error) {
@@ -93,7 +93,7 @@ const NewDoctorCategory = () => {
         labelCol={{ span: 3 }}
         wrapperCol={{ span: 10 }}
         form={form}
-        name="doctor_category_input"
+        name="lawyer_category_input"
         onFinish={onFinish}
         scrollToFirstError
         labelAlign="left"
@@ -160,4 +160,4 @@ const NewDoctorCategory = () => {
   );
 };
 
-export default NewDoctorCategory;
+export default NewLawyerCategory;

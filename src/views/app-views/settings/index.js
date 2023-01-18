@@ -102,7 +102,7 @@ const Settings = () => {
     confirm({
       title: `Are you sure you want to set the withdrawal percentage to be ${data.percentage}% and tax ${data.tax}%`,
       content:
-        "This number will be seen by the doctor when withdrawing funds, the higher the percentage you take, the more likely the doctor will not be happy with it",
+        "This number will be seen by the lawyer when withdrawing funds, the higher the percentage you take, the more likely the lawyer will not be happy with it",
       onOk() {
         onFinish(data);
       },
@@ -226,7 +226,7 @@ const Settings = () => {
                     </Form.Item>
                   </Form>
                   <p>
-                    * the percentage that will be deducted when the doctor makes
+                    * the percentage that will be deducted when the lawyer makes
                     a withdrawal
                   </p>
                 </Card>

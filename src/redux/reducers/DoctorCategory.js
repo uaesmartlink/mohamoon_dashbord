@@ -1,8 +1,8 @@
 import {
-  DOCTOR_CATEGORY_FETCH_FAIL,
-  DOCTOR_CATEGORY_FETCH_INIT,
-  DOCTOR_CATEGORY_FETCH_SUCCESS,
-} from "redux/constants/DoctorCategory";
+  LAWYER_CATEGORY_FETCH_FAIL,
+  LAWYER_CATEGORY_FETCH_INIT,
+  LAWYER_CATEGORY_FETCH_SUCCESS,
+} from "redux/constants/LawyerCategory";
 
 const initialState = {
   data: [],
@@ -12,13 +12,13 @@ const initialState = {
   delete: false,
 };
 
-const doctorCategory = (state = initialState, action) => {
+const lawyerCategory = (state = initialState, action) => {
   switch (action.type) {
-    case DOCTOR_CATEGORY_FETCH_INIT:
+    case LAWYER_CATEGORY_FETCH_INIT:
       return { ...state, loading: true };
-    case DOCTOR_CATEGORY_FETCH_SUCCESS:
+    case LAWYER_CATEGORY_FETCH_SUCCESS:
       return { ...state, success: true, data: action.data, loading: false };
-    case DOCTOR_CATEGORY_FETCH_FAIL:
+    case LAWYER_CATEGORY_FETCH_FAIL:
       return { ...state, error: action.error, loading: false };
 
     default:
@@ -26,4 +26,4 @@ const doctorCategory = (state = initialState, action) => {
   }
 };
 
-export default doctorCategory;
+export default lawyerCategory;

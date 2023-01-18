@@ -1,27 +1,27 @@
 import {
-  SET_DOCTOR_ACCOUNT_STATUS_INIT,
-  SET_DOCTOR_ACCOUNT_STATUS_SUCCESS,
-  SET_DOCTOR_ACCOUNT_STATUS_ERROR,
-  DELETE_DOCTOR_INIT,
-  DELETE_DOCTOR_SUCCESS,
-  DELETE_DOCTOR_ERROR,
-  ADD_TOP_RATED_DOCTOR_INIT,
-  ADD_TOP_RATED_DOCTOR_SUCCESS,
-  ADD_TOP_RATED_DOCTOR_ERROR,
+  SET_LAWYER_ACCOUNT_STATUS_INIT,
+  SET_LAWYER_ACCOUNT_STATUS_SUCCESS,
+  SET_LAWYER_ACCOUNT_STATUS_ERROR,
+  DELETE_LAWYER_INIT,
+  DELETE_LAWYER_SUCCESS,
+  DELETE_LAWYER_ERROR,
+  ADD_TOP_RATED_LAWYER_INIT,
+  ADD_TOP_RATED_LAWYER_SUCCESS,
+  ADD_TOP_RATED_LAWYER_ERROR,
   DELETE_TOP_RATED_INIT,
   DELETE_TOP_RATED_SUCCESS,
   DELETE_TOP_RATED_ERROR,
-  DOCTOR_FETCH_INIT,
-  DOCTOR_FETCH_SUCCESS,
-  DOCTOR_FETCH_FAIL,
-  FETCH_TOP_RATED_DOCTOR_INIT,
-  FETCH_TOP_RATED_DOCTOR_SUCCESS,
-  FETCH_TOP_RATED_DOCTOR_FAIL,
-} from "redux/constants/Doctor";
+  LAWYER_FETCH_INIT,
+  LAWYER_FETCH_SUCCESS,
+  LAWYER_FETCH_FAIL,
+  FETCH_TOP_RATED_LAWYER_INIT,
+  FETCH_TOP_RATED_LAWYER_SUCCESS,
+  FETCH_TOP_RATED_LAWYER_FAIL,
+} from "redux/constants/Lawyer";
 
 const initialState = {
   data: [],
-  topRatedDoctor: [],
+  topRatedLawyer: [],
   loading: false,
   topRatedLoading: false,
   error: null,
@@ -32,24 +32,24 @@ const initialState = {
   topRatedError: false,
 };
 
-const doctors = (state = initialState, action) => {
+const lawyers = (state = initialState, action) => {
   switch (action.type) {
-    case DOCTOR_FETCH_INIT:
+    case LAWYER_FETCH_INIT:
       return { ...state, loading: true };
-    case DOCTOR_FETCH_SUCCESS:
+    case LAWYER_FETCH_SUCCESS:
       return { ...state, success: true, data: action.data, loading: false };
-    case DOCTOR_FETCH_FAIL:
+    case LAWYER_FETCH_FAIL:
       return { ...state, error: action.error };
-    case FETCH_TOP_RATED_DOCTOR_INIT:
+    case FETCH_TOP_RATED_LAWYER_INIT:
       return { ...state, topRatedLoading: true };
-    case FETCH_TOP_RATED_DOCTOR_SUCCESS:
+    case FETCH_TOP_RATED_LAWYER_SUCCESS:
       return {
         ...state,
         topRatedSuccess: true,
-        topRatedDoctor: action.topRatedDoctor,
+        topRatedLawyer: action.topRatedLawyer,
         topRatedLoading: false,
       };
-    case FETCH_TOP_RATED_DOCTOR_FAIL:
+    case FETCH_TOP_RATED_LAWYER_FAIL:
       return {
         ...state,
         topRatedError: action.topRatedError,
@@ -61,64 +61,64 @@ const doctors = (state = initialState, action) => {
       return {
         ...state,
         success: true,
-        topRatedDoctor: state.topRatedDoctor.filter(
-          (elem) => elem.id !== action.doctorId
+        topRatedLawyer: state.topRatedLawyer.filter(
+          (elem) => elem.id !== action.lawyerId
         ),
         topRatedLoading: false,
       };
     case DELETE_TOP_RATED_ERROR:
       return { ...state, topRatedError: action.error };
-    case ADD_TOP_RATED_DOCTOR_INIT:
+    case ADD_TOP_RATED_LAWYER_INIT:
       return { ...state, loading: true };
-    case ADD_TOP_RATED_DOCTOR_SUCCESS:
-      let doctorAdded = state.data.find(
-        (object) => object.id === action.doctorId
+    case ADD_TOP_RATED_LAWYER_SUCCESS:
+      let lawyerAdded = state.data.find(
+        (object) => object.id === action.lawyerId
       );
       console.log(
-        "🚀 ~ file: Doctor.js ~ line 76 ~ doctors ~ doctorAdded",
-        doctorAdded
+        "🚀 ~ file: Lawyer.js ~ line 76 ~ lawyers ~ lawyerAdded",
+        lawyerAdded
       );
       return {
         ...state,
         success: true,
-        topRatedDoctor: [...state.topRatedDoctor, doctorAdded],
+        topRatedLawyer: [...state.topRatedLawyer, lawyerAdded],
         loading: false,
       };
-    case ADD_TOP_RATED_DOCTOR_ERROR:
+    case ADD_TOP_RATED_LAWYER_ERROR:
       return { ...state, error: action.error };
-    case DELETE_DOCTOR_INIT:
+    case DELETE_LAWYER_INIT:
       return { ...state, loading: true };
-    case DELETE_DOCTOR_SUCCESS:
+    case DELETE_LAWYER_SUCCESS:
       return {
         ...state,
         success: true,
-        data: state.data.filter((elem) => elem.id !== action.doctorId),
+        data: state.data.filter((elem) => elem.id !== action.lawyerId),
         loading: false,
       };
-    case DELETE_DOCTOR_ERROR:
+    case DELETE_LAWYER_ERROR:
       return { ...state, error: action.error, loading: false };
-    case SET_DOCTOR_ACCOUNT_STATUS_INIT:
+    case SET_LAWYER_ACCOUNT_STATUS_INIT:
       return { ...state, loading: true };
-    case SET_DOCTOR_ACCOUNT_STATUS_SUCCESS:
+    case SET_LAWYER_ACCOUNT_STATUS_SUCCESS:
       console.log("kepanggil kok");
       console.log(
-        "🚀 ~ file: Doctor.js ~ line 106 ~ doctors ~ action.docot",
-        action.doctorId
+        "🚀 ~ file: Lawyer.js ~ line 106 ~ lawyers ~ action.docot",
+        action.lawyerId
       );
-      let objIndex = state.data.findIndex((obj) => obj.id === action.doctorId);
+      let objIndex = state.data.findIndex((obj) => obj.id === action.lawyerId);
       let newArray = state.data;
       newArray[objIndex].accountStatus = action.status;
       // console.log(
-      //   "🚀 ~ file: Doctor.js ~ line 106 ~ doctors ~ newArray[objIndex].accountStatus",
+      //   "🚀 ~ file: Lawyer.js ~ line 106 ~ lawyers ~ newArray[objIndex].accountStatus",
       //   newArray[objIndex].accountStatus
       // );
 
       return { ...state, success: true, data: newArray, loading: false };
-    case SET_DOCTOR_ACCOUNT_STATUS_ERROR:
+    case SET_LAWYER_ACCOUNT_STATUS_ERROR:
       return { ...state, error: action.error, loading: false };
     //plopImport
     default:
       return state;
   }
 };
-export default doctors;
+export default lawyers;

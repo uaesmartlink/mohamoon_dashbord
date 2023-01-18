@@ -14,7 +14,7 @@ const menuItem = [
   {
     title: "Account Setting",
     icon: SettingOutlined,
-    path: "https://halodoctor.netlify.app/",
+    path: "https://halolawyer.netlify.app/",
   },
   {
     title: "Help Center",

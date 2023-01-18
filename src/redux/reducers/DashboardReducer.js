@@ -2,22 +2,22 @@ import {
     GET_USER_COUNT_INIT,
     GET_USER_COUNT_SUCCESS,
     GET_USER_COUNT_ERROR,
-    GET_DOCTOR_COUNT_ERROR,
-    GET_DOCTOR_COUNT_INIT,
-    GET_DOCTOR_COUNT_SUCCESS,
+    GET_LAWYER_COUNT_ERROR,
+    GET_LAWYER_COUNT_INIT,
+    GET_LAWYER_COUNT_SUCCESS,
 } from "../constants/DashboardConstants.js";
 
 const initialState = {
   userData: [],
-  doctorData: [],
+  lawyerData: [],
   userLoading: false,
-  doctorLoading: false,
+  lawyerLoading: false,
   userError: null,
-  doctorError: null,
+  lawyerError: null,
   userSuccess: false,
-  doctorSuccess: false,
+  lawyerSuccess: false,
   userDelete: false,
-  doctorDelete: false,
+  lawyerDelete: false,
 };
 
 const dashboard = (state = initialState, action) => {
@@ -28,12 +28,12 @@ const dashboard = (state = initialState, action) => {
             return { ...state, success: true, userData: action.data, userLoading: false };
         case GET_USER_COUNT_ERROR:
             return { ...state, userError: action.error };
-        case GET_DOCTOR_COUNT_INIT:
-            return { ...state, doctorLoading: true };
-        case GET_DOCTOR_COUNT_SUCCESS:
-            return { ...state, success: true, doctorData: action.data, doctorLoading: false };
-        case GET_DOCTOR_COUNT_ERROR:
-            return { ...state, doctorError: action.error };
+        case GET_LAWYER_COUNT_INIT:
+            return { ...state, lawyerLoading: true };
+        case GET_LAWYER_COUNT_SUCCESS:
+            return { ...state, success: true, lawyerData: action.data, lawyerLoading: false };
+        case GET_LAWYER_COUNT_ERROR:
+            return { ...state, lawyerError: action.error };
             //plopImport
         default:
             return state;

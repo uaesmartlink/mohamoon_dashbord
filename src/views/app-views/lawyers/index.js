@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import firebase from 'firebase/app';
 import {
-  //addTopRatedDoctorInit,
+  //addTopRatedLawyerInit,
   //deleteTopRatedInit,
-  fetchDoctorInit,
- // fetchTopRatedDoctorInit,
-  deleteDoctorInit,
-  setDoctorAccountStatusInit,
-} from "redux/actions/Doctor";
+  fetchLawyerInit,
+ // fetchTopRatedLawyerInit,
+  deleteLawyerInit,
+  setLawyerAccountStatusInit,
+} from "redux/actions/Lawyer";
 import Flex from "components/shared-components/Flex";
 import AvatarStatus from "components/shared-components/AvatarStatus";
 import {
@@ -24,26 +24,26 @@ import {
 } from "@ant-design/icons";
 const { TabPane } = Tabs;
 const { confirm } = Modal;
-const Doctors = () => {
+const Lawyers = () => {
   const {
-    doctorList,
-  //  listTopRatedDoctor,
+    lawyerList,
+  //  listTopRatedLawyer,
   //  topRatedLoading,
     loading,
   } = useSelector(
     (state) => ({
-      doctorList: state.doctor.data,
-   //   listTopRatedDoctor: state.doctor.topRatedDoctor,
-    //  topRatedLoading: state.doctor.topRatedLoading,
-      error: state.doctor.error,
-      loading: state.doctor.loading,
-      delete: state.doctor.delete,
+      lawyerList: state.lawyer.data,
+   //   listTopRatedLawyer: state.lawyer.topRatedLawyer,
+    //  topRatedLoading: state.lawyer.topRatedLoading,
+      error: state.lawyer.error,
+      loading: state.lawyer.loading,
+      delete: state.lawyer.delete,
     }),
     shallowEqual
   );
 
   // eslint-disable-next-line array-callback-return
-  doctorList.map(el => {
+  lawyerList.map(el => {
     let date = new Date(el.createdAt)
     el.createdAt_newFormate = date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+"\n"+dateFormat(date.getHours())+":"+dateFormat(date.getMinutes());
   });
@@ -58,8 +58,8 @@ const Doctors = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchDoctorInit());
-   // dispatch(fetchTopRatedDoctorInit());
+    dispatch(fetchLawyerInit());
+   // dispatch(fetchTopRatedLawyerInit());
   }, [dispatch]);
 
   const columns = [
@@ -70,43 +70,43 @@ const Doctors = () => {
       width: "10%",
     },
     {
-      title: "Doctor Picture",
-      dataIndex: "doctorPicture",
+      title: "Lawyer Picture",
+      dataIndex: "lawyerPicture",
       key: "name",
       render: (_, record) => (
         <Flex>
           <AvatarStatus
             size={30}
-            src={record.doctorPicture}
+            src={record.lawyerPicture}
           />
         </Flex>
       ),
     },
     {
-      title: "Doctor Name",
-      dataIndex: "doctorName",
-      key: "doctorName",
+      title: "Lawyer Name",
+      dataIndex: "lawyerName",
+      key: "lawyerName",
     },
     {
       title: "Phone",
-      dataIndex: "doctorPhone",
-      key: "doctorPhone",
+      dataIndex: "lawyerPhone",
+      key: "lawyerPhone",
     },
     /*
     {
       title: "Hospital",
-      dataIndex: "doctorHospital",
-      key: "doctorHospital",
+      dataIndex: "lawyerHospital",
+      key: "lawyerHospital",
     },
     */
     {
       title: "Category / Specialist",
-      dataIndex: ["doctorCategory", "categoryName"],
-      key: "doctorHospital",
+      dataIndex: ["lawyerCategory", "categoryName"],
+      key: "lawyerHospital",
     },
     {
       title: "Account Status",
-      key: "doctorHospital",
+      key: "lawyerHospital",
       dataIndex: "accountStatus",
       render: (tag) => (
         <>
@@ -133,22 +133,22 @@ const Doctors = () => {
             shape="circle"
             onClick={
               record.accountStatus === "active"
-                ? () => showConfirmDeactivate(record.doctorName, record.id)
-                : () => showConfirmActivate(record.doctorName, record.id)
+                ? () => showConfirmDeactivate(record.lawyerName, record.id)
+                : () => showConfirmActivate(record.lawyerName, record.id)
             }
           ></Button>
           {/*
           <Button
             icon={<StarOutlined />}
             shape="circle"
-            onClick={() => showConfirmAddTopRated(record.doctorName, record.id)}
+            onClick={() => showConfirmAddTopRated(record.lawyerName, record.id)}
           ></Button>
           */}
           <Button
             icon={<DeleteOutlined />}
             shape="circle"
             onClick={() =>
-              showConfirmDeleteDoctor(record.doctorName, record.id)
+              showConfirmDeleteLawyer(record.lawyerName, record.id)
             }
           ></Button>
            <Button
@@ -178,34 +178,34 @@ const Doctors = () => {
     },
   ];
 /*
-  const topRatedDoctorColumns = [
+  const topRatedLawyerColumns = [
     {
-      title: "Doctor Picture",
-      dataIndex: "doctorPicture",
+      title: "Lawyer Picture",
+      dataIndex: "lawyerPicture",
       key: "name",
       render: (_, record) => (
         <Flex>
           <AvatarStatus
             size={30}
-            src={record.doctorPicture}
+            src={record.lawyerPicture}
           />
         </Flex>
       ),
     },
     {
-      title: "Doctor Name",
-      dataIndex: "doctorName",
-      key: "doctorName",
+      title: "Lawyer Name",
+      dataIndex: "lawyerName",
+      key: "lawyerName",
     },
     {
       title: "Hospital",
-      dataIndex: "doctorHospital",
-      key: "doctorHospital",
+      dataIndex: "lawyerHospital",
+      key: "lawyerHospital",
     },
     {
       title: "Category / Specialist",
-      dataIndex: ["doctorCategory", "categoryName"],
-      key: "doctorHospital",
+      dataIndex: ["lawyerCategory", "categoryName"],
+      key: "lawyerHospital",
     },
 
     {
@@ -218,18 +218,18 @@ const Doctors = () => {
             icon={<StarFilled />}
             shape="circle"
             onClick={() =>
-              showConfirmDeleteTopRated(record.doctorName, record.id)
+              showConfirmDeleteTopRated(record.lawyerName, record.id)
             }
           ></Button>
         </Space>
       ),
     },
   ];
-  function showConfirmAddTopRated(doctorName, documentId) {
+  function showConfirmAddTopRated(lawyerName, documentId) {
     confirm({
-      title: `Do you want to add ${doctorName} to Top Rated Doctor"`,
+      title: `Do you want to add ${lawyerName} to Top Rated Lawyer"`,
       content:
-        "if you adding this doctor to the top rated doctor, he will appear on the main page of all users",
+        "if you adding this lawyer to the top rated lawyer, he will appear on the main page of all users",
       onOk() {
         addTopRated(documentId);
       },
@@ -237,12 +237,12 @@ const Doctors = () => {
     });
   }
 
-  function showConfirmDeleteTopRated(doctorName, documentId) {
+  function showConfirmDeleteTopRated(lawyerName, documentId) {
     confirm({
-      title: `Remove ${doctorName} from Top Rated Doctor.?"`,
+      title: `Remove ${lawyerName} from Top Rated Lawyer.?"`,
       icon: <ExclamationCircleOutlined />,
       content:
-        "if you remove this Doctor from top rated doctor, he will not be shown on Top Rated Doctor page",
+        "if you remove this Lawyer from top rated lawyer, he will not be shown on Top Rated Lawyer page",
       onOk() {
         deleteTopRated(documentId);
       },
@@ -251,59 +251,59 @@ const Doctors = () => {
   }
 
   */
-  function showConfirmDeleteDoctor(doctorName, documentId) {
+  function showConfirmDeleteLawyer(lawyerName, documentId) {
     confirm({
-      title: `Are you sure you want to delete ${doctorName} account`,
+      title: `Are you sure you want to delete ${lawyerName} account`,
 
       content:
-        "if you delete this doctor's account, this account will be deleted forever",
+        "if you delete this lawyer's account, this account will be deleted forever",
       onOk() {
-        deleteDoctorAccount(documentId);
+        deleteLawyerAccount(documentId);
       },
       onCancel() {},
     });
   }
-  function showConfirmDeactivate(doctorName, documentId) {
+  function showConfirmDeactivate(lawyerName, documentId) {
     confirm({
-      title: `Are you sure you want to deactivate ${doctorName} account`,
+      title: `Are you sure you want to deactivate ${lawyerName} account`,
 
       content:
-        "If you deactivate this doctor's account, this doctor will not be visible to all users, until it is reactivated",
+        "If you deactivate this lawyer's account, this lawyer will not be visible to all users, until it is reactivated",
       onOk() {
-        deactivateDoctor(documentId);
+        deactivateLawyer(documentId);
       },
       onCancel() {},
     });
   }
-  function showConfirmActivate(doctorName, documentId) {
+  function showConfirmActivate(lawyerName, documentId) {
     confirm({
-      title: `Are you sure you want to Activate ${doctorName} account`,
+      title: `Are you sure you want to Activate ${lawyerName} account`,
 
       content:
-        "If you Aeactivate this doctor's account, this doctor  be visible to all users",
+        "If you Aeactivate this lawyer's account, this lawyer  be visible to all users",
       onOk() {
-        activateDoctor(documentId);
+        activateLawyer(documentId);
       },
       onCancel() {},
     });
   }
 
-  function deactivateDoctor(doctorId) {
-    dispatch(setDoctorAccountStatusInit(doctorId, "nonactive"));
+  function deactivateLawyer(lawyerId) {
+    dispatch(setLawyerAccountStatusInit(lawyerId, "nonactive"));
   }
-  function activateDoctor(doctorId) {
-    dispatch(setDoctorAccountStatusInit(doctorId, "active"));
+  function activateLawyer(lawyerId) {
+    dispatch(setLawyerAccountStatusInit(lawyerId, "active"));
   }
   /*
-  function deleteTopRated(doctorId) {
-    dispatch(deleteTopRatedInit(doctorId));
+  function deleteTopRated(lawyerId) {
+    dispatch(deleteTopRatedInit(lawyerId));
   }
-  function addTopRated(doctorId) {
-    dispatch(addTopRatedDoctorInit(doctorId));
+  function addTopRated(lawyerId) {
+    dispatch(addTopRatedLawyerInit(lawyerId));
   }
   */
-  function deleteDoctorAccount(doctorId) {
-    dispatch(deleteDoctorInit(doctorId));
+  function deleteLawyerAccount(lawyerId) {
+    dispatch(deleteLawyerInit(lawyerId));
   }
 
   return (
@@ -321,9 +321,9 @@ const Doctors = () => {
           </Flex>
         </Flex> */}
         <Tabs defaultActiveKey="1">
-          <TabPane tab="Doctors" key="1">
+          <TabPane tab="Lawyers" key="1">
             <Table
-              dataSource={doctorList}
+              dataSource={lawyerList}
               columns={columns}
               loading={loading}
             />
@@ -333,14 +333,14 @@ const Doctors = () => {
             tab={
               <span>
                 <StarOutlined />
-                Top Rated Doctors
+                Top Rated Lawyers
               </span>
             }
             key="2"
           >
             <Table
-              dataSource={listTopRatedDoctor}
-              columns={topRatedDoctorColumns}
+              dataSource={listTopRatedLawyer}
+              columns={topRatedLawyerColumns}
               loading={topRatedLoading}
             />
           </TabPane>
@@ -351,4 +351,4 @@ const Doctors = () => {
   );
 };
 
-export default Doctors;
+export default Lawyers;

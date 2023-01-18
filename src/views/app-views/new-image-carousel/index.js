@@ -88,7 +88,7 @@ const NewImageCarousel = () => {
         labelCol={{ span: 3 }}
         wrapperCol={{ span: 10 }}
         form={form}
-        name="doctor_category_input"
+        name="lawyer_category_input"
         onFinish={showPromiseConfirm}
         scrollToFirstError
         labelAlign="left"

@@ -1,16 +1,16 @@
 import {
-  DOCTOR_CATEGORY_FETCH_INIT,
-  DOCTOR_CATEGORY_FETCH_SUCCESS,
-  DOCTOR_CATEGORY_FETCH_FAIL,
-} from "redux/constants/DoctorCategory";
-export const fetchDoctorCategoryInit = (userId = "") => {
-  return { type: DOCTOR_CATEGORY_FETCH_INIT, userId };
+  LAWYER_CATEGORY_FETCH_INIT,
+  LAWYER_CATEGORY_FETCH_SUCCESS,
+  LAWYER_CATEGORY_FETCH_FAIL,
+} from "redux/constants/LawyerCategory";
+export const fetchLawyerCategoryInit = (userId = "") => {
+  return { type: LAWYER_CATEGORY_FETCH_INIT, userId };
 };
-export const fetchDoctorCategorySuccess = (data) => ({
-  type: DOCTOR_CATEGORY_FETCH_SUCCESS,
+export const fetchLawyerCategorySuccess = (data) => ({
+  type: LAWYER_CATEGORY_FETCH_SUCCESS,
   data,
 });
-export const fetchDoctorCategoryFail = (error) => ({
-  type: DOCTOR_CATEGORY_FETCH_FAIL,
+export const fetchLawyerCategoryFail = (error) => ({
+  type: LAWYER_CATEGORY_FETCH_FAIL,
   error,
 });

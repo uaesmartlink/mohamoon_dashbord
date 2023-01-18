@@ -4,7 +4,7 @@ import { Card, Row, Col } from "antd";
 import { useSelector } from "react-redux";
 
 const backgroundStyle = {
-  backgroundImage: "url(/img/others/doctor-background1.jpg)",
+  backgroundImage: "url(/img/others/lawyer-background1.jpg)",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
 };

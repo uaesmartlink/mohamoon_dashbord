@@ -72,7 +72,7 @@ export function* deleteUser() {
   yield takeEvery(DELETE_USER_INIT, function* (action) {
     try {
       console.log(
-        "🚀 ~ file: Doctors.js ~ line 108 ~ yieldtakeEvery ~ action",
+        "🚀 ~ file: Lawyers.js ~ line 108 ~ yieldtakeEvery ~ action",
         action
       );
 
@@ -80,7 +80,7 @@ export function* deleteUser() {
       yield put(deleteUserSuccess(action.userId));
     } catch (error) {
       console.log(
-        "🚀 ~ file: Doctors.js ~ line 117 ~ yieldtakeEvery ~ error",
+        "🚀 ~ file: Lawyers.js ~ line 117 ~ yieldtakeEvery ~ error",
         error
       );
       yield put(deleteUserError(error.message));
