@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "mohamoon-f35de"
-  }
+    "default": "mohamoon-f35de",
+    "staging": "mohamoon-f35de"
+  },
+  "targets": {},
+  "etags": {}
 }
