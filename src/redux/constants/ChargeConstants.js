@@ -1,0 +1,4 @@
+export const GET_CHARGE_INIT = "GET_CHARGE_INIT";
+export const GET_CHARGE_SUCCESS = "GET_CHARGE_SUCCESS";
+export const GET_CHARGE_ERROR = "GET_CHARGE_ERROR";
+//plopImport
