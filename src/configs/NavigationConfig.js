@@ -46,6 +46,16 @@ const LawyerCategoryNavTree = [
     submenu: [],
   },
 ];
+const CountryNavTree = [
+  {
+    key: "country",
+    path: `${APP_PREFIX_PATH}/country`,
+    title: "Country",
+    icon: UserOutlined,
+    breadcrumb: false,
+    submenu: [],
+  },
+];
 
 const WithdrawNavTree = [
   {
@@ -96,6 +106,7 @@ const navigationConfig = [
   ...usersNavTree,
   ...LawyersNavTree,
   ...LawyerCategoryNavTree,
+  ...CountryNavTree,
   ...WithdrawNavTree,
   ...ChargeNavTree,
   ...TransactionNavTree,

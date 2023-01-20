@@ -19,6 +19,10 @@ export const AppViews = () => {
           path={`${APP_PREFIX_PATH}/lawyer-category`}
           component={lazy(() => import(`./lawyer-category`))}
         />
+         <Route
+          path={`${APP_PREFIX_PATH}/country`}
+          component={lazy(() => import(`./country`))}
+        />
         <Route
           path={`${APP_PREFIX_PATH}/user`}
           component={lazy(() => import(`./user`))}
@@ -30,6 +34,14 @@ export const AppViews = () => {
         <Route
           path={`${APP_PREFIX_PATH}/new-lawyer-category`}
           component={lazy(() => import(`./new-lawyer-category`))}
+        />
+         <Route
+          path={`${APP_PREFIX_PATH}/new-country/:id/:name/:translation/`}
+          component={lazy(() => import(`./new-country`))}
+        />
+        <Route
+          path={`${APP_PREFIX_PATH}/new-country`}
+          component={lazy(() => import(`./new-country`))}
         />
         <Route
           path={`${APP_PREFIX_PATH}/lawyers`}

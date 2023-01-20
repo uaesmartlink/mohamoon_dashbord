@@ -91,18 +91,45 @@ FirebaseService.addLawyerCategory = async (categoryName, categoryTranslation, ca
   }
 };
 
-FirebaseService.getLawyerCategory = async (categoryId) =>{
-     try {
-    return await db.collection("LawyerCategory").doc(categoryId).get();
+FirebaseService.addCountry = async (countryName, countryTranslation, iconUrl) => {
+  try {
+    await db.collection("Country").add({
+      countryName,
+      countryTranslation,
+      iconUrl,
+    });
   } catch (error) {
     throw error;
   }
 };
 
+FirebaseService.getLawyerCategory = async (countryId) =>{
+     try {
+    return await db.collection("LawyerCategory").doc(countryId).get();
+  } catch (error) {
+    throw error;
+  }
+};
+
+FirebaseService.getCountry = async (countryId) =>{
+  try {
+    return await db.collection("Country").doc(countryId).get();
+  } catch (error) {
+  throw error;
+  }
+};
 
 FirebaseService.removeLawyerCategory = async (categoryId) => {
   try {
     await db.collection("LawyerCategory").doc(categoryId).delete();
+  } catch (error) {
+    throw error;
+  }
+};
+
+FirebaseService.removeCountry = async (countryId) => {
+  try {
+    await db.collection("Country").doc(countryId).delete();
   } catch (error) {
     throw error;
   }
@@ -130,6 +157,27 @@ FirebaseService.editLawyerCategory = async (id, categoryName, categoryTranslatio
     throw error;
   }
 };
+
+FirebaseService.editCountry = async (id, countryName, countryTranslation, iconUrl) => {
+  try {
+    if (iconUrl == null) {
+      await db.collection("Country").doc(id).update({
+        countryName,
+        countryTranslation,
+    
+      });
+    } else {
+      await db.collection("Country").doc(id).set({
+        countryName,
+        countryTranslation,
+        iconUrl,
+      });
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 FirebaseService.removeTopRatedLawyer = async (topRatedId) => {
   try {

@@ -1,0 +1,5 @@
+//snippet rxconst
+export const COUNTRY_FETCH_INIT = "COUNTRY_FETCH_INIT";
+export const COUNTRY_FETCH_SUCCESS = "COUNTRY_FETCH_SUCCESS";
+export const COUNTRY_FETCH_FAIL = "COUNTRY_FETCH_FAIL";
+//plopImport
