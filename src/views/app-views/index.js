@@ -20,15 +20,11 @@ export const AppViews = () => {
           component={lazy(() => import(`./lawyer-category`))}
         />
         <Route
-          path={`${APP_PREFIX_PATH}/lawyer-category`}
-          component={lazy(() => import(`./lawyer-category`))}
-        />
-        <Route
           path={`${APP_PREFIX_PATH}/user`}
           component={lazy(() => import(`./user`))}
         />
         <Route
-          path={`${APP_PREFIX_PATH}/new-lawyer-category/:id/:name/:translation`}
+          path={`${APP_PREFIX_PATH}/new-lawyer-category/:id/:name/:translation/:description/:descriptionAr`}
           component={lazy(() => import(`./new-lawyer-category`))}
         />
         <Route

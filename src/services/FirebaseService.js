@@ -77,11 +77,13 @@ FirebaseService.uploadImage = async (fileName, file) => {
   return url.ref.getDownloadURL();
 };
 
-FirebaseService.addLawyerCategory = async (categoryName, categoryTranslation, iconUrl) => {
+FirebaseService.addLawyerCategory = async (categoryName, categoryTranslation, categoryDescription, categoryDescriptionAr, iconUrl) => {
   try {
     await db.collection("LawyerCategory").add({
       categoryName,
       categoryTranslation,
+      categoryDescription,
+      categoryDescriptionAr,
       iconUrl,
     });
   } catch (error) {
@@ -91,7 +93,7 @@ FirebaseService.addLawyerCategory = async (categoryName, categoryTranslation, ic
 
 FirebaseService.getLawyerCategory = async (categoryId) =>{
      try {
-    await db.collection("LawyerCategory").doc(categoryId).delete();
+    return await db.collection("LawyerCategory").doc(categoryId).get();
   } catch (error) {
     throw error;
   }
@@ -106,17 +108,21 @@ FirebaseService.removeLawyerCategory = async (categoryId) => {
   }
 };
 
-FirebaseService.editLawyerCategory = async (id, categoryName,categoryTranslation, iconUrl) => {
+FirebaseService.editLawyerCategory = async (id, categoryName, categoryTranslation, categoryDescription, categoryDescriptionAr, iconUrl) => {
   try {
     if (iconUrl == null) {
       await db.collection("LawyerCategory").doc(id).update({
         categoryName,
         categoryTranslation,
+        categoryDescription,
+        categoryDescriptionAr,
       });
     } else {
       await db.collection("LawyerCategory").doc(id).set({
         categoryName,
         categoryTranslation,
+        categoryDescription,
+        categoryDescriptionAr,
         iconUrl,
       });
     }

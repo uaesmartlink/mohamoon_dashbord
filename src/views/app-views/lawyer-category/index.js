@@ -42,9 +42,8 @@ const LawyerCategory = () => {
       render: (_, record) => (
         <Flex>
           <AvatarStatus
-            size={30}
+            size={50}
             src={record.iconUrl}
-            name={record.categoryName}
           />
         </Flex>
       ),
@@ -52,12 +51,22 @@ const LawyerCategory = () => {
     {
       title: "Category Name",
       dataIndex: "categoryName",
-      key: "categoryname",
+      key: "categoryName",
     },
     {
       title: "الاختصاص",
       dataIndex: "categoryTranslation",
       key: "categoryTranslation",
+    },
+    {
+      title: "Category Description",
+      dataIndex: "categoryDescription",
+      key: "categoryDescription",
+    },
+    {
+      title: "الوصف",
+      dataIndex: "categoryDescriptionAr",
+      key: "categoryTDescriptionAr",
     },
     {
       title: "Action",
@@ -77,7 +86,10 @@ const LawyerCategory = () => {
                   record.categoryName +
                   "/" +
                   record.categoryTranslation +
-                  "/",             
+                  "/" +  
+                  record.categoryDescription +
+                  "/" +
+                  record.categoryDescriptionAr
               })
             }
           ></Button>

@@ -11,7 +11,8 @@ import { useHistory } from "react-router-dom";
 
 const NewLawyerCategory = () => {
   const history = useHistory();
-  const { id, name, translation} = useParams();
+  const { id, name, translation, description, descriptionAr} = useParams();
+
   const isEditing = useMemo(() => !!id, [id]);
   const [form] = Form.useForm();
   const onFinish = async (values) => {
@@ -20,6 +21,8 @@ const NewLawyerCategory = () => {
         const form = {
           categoryName: values.categoryName,
           categoryTranslation: values.categoryTranslation,
+          categoryDescription: values.categoryDescription, 
+          categoryDescriptionAr: values.categoryDescriptionAr, 
           iconUrl: values.category_icon,
         };
         const isValid = await lawyerCategorySchemaEditing.validate(form);
@@ -27,8 +30,10 @@ const NewLawyerCategory = () => {
           if (!values.category_icon) {
             await FirebaseService.editLawyerCategory(
               id,
-              values.categoryName,
-              values.categoryTranslation,
+              form.categoryName,
+              form.categoryTranslation,
+              form.categoryDescription,
+              form.categoryDescriptionAr,
               null
             );
             history.push("/app/lawyer-category");
@@ -37,11 +42,13 @@ const NewLawyerCategory = () => {
               values.category_icon.file.name,
               values.category_icon.fileList[0].originFileObj
             );
-            const form = { categoryName: values.categoryName, categoryTranslation: values.categoryTranslation, iconUrl };
+            const form = { categoryName: values.categoryName, categoryTranslation: values.categoryTranslation,categoryDescription: values.categoryDescription,categoryDescriptionAr: values.categoryDescriptionAr , iconUrl };
             await FirebaseService.editLawyerCategory(
               id,
               form.categoryName,
               form.categoryTranslation,
+              form.categoryDescription,
+              form.categoryDescriptionAr,
               form.iconUrl
             );
 
@@ -57,6 +64,8 @@ const NewLawyerCategory = () => {
         const form = {
           categoryName: values.categoryName,
           categoryTranslation: values.categoryTranslation,
+          categoryDescription: values.categoryDescription,
+          categoryDescriptionAr: values.categoryDescription,
           iconUrl,
         };
         const isValid = await lawyerCategorySchema.validate(form);
@@ -65,6 +74,8 @@ const NewLawyerCategory = () => {
             id,
             form.categoryName,
             form.categoryTranslation,
+            form.categoryDescription,
+            form.categoryDescriptionAr,
             form.iconUrl
           );
           history.push("/app/lawyer-category");
@@ -90,14 +101,14 @@ const NewLawyerCategory = () => {
   return (
     <Card>
       <Form
-        labelCol={{ span: 3 }}
+        labelCol={{ span: 5 }}
         wrapperCol={{ span: 10 }}
         form={form}
         name="lawyer_category_input"
         onFinish={onFinish}
         scrollToFirstError
         labelAlign="left"
-        initialValues={{ categoryName: isEditing ? name : null , categoryTranslation:  isEditing ? translation : null}}
+        initialValues={{ categoryName: isEditing ? name : null ,  categoryTranslation:  isEditing ? translation : null,  categoryDescription: isEditing? description : null, categoryDescriptionAr: isEditing? descriptionAr : null}}
       >
        
         <Form.Item
@@ -124,7 +135,20 @@ const NewLawyerCategory = () => {
         >
           <Input />
         </Form.Item>
-        
+        <Form.Item
+          name="categoryDescription"
+          label="Category Description"
+          
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="categoryDescriptionAr"
+          label="category Description in Arabic"
+          
+        >
+          <Input />
+        </Form.Item>
         <Form.Item
           name="category_icon"
           label="Category Icon"

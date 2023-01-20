@@ -2,7 +2,7 @@ const FirebaseConfig = {
 
   apiKey: "AIzaSyArgTUlLyYZTNjVNYTtEG7-AUtPAJ0nM0s",
   authDomain: "mohamoon-f35de.firebaseapp.com",
-  databaseURL: "https://mohamoon-f35de-default-rtdb.asia-southeast1.firebasedatabase.app",
+  databaseURL: "https://mohamoon-f35de.firebasedatabase.app",
   projectId: "mohamoon-f35de",
   storageBucket: "mohamoon-f35de.appspot.com",
   messagingSenderId: "1067952255007",
