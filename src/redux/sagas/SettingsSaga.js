@@ -9,6 +9,10 @@ import {
   getImageCarouselSuccess,
   deleteImageCarouselSuccess,
   deleteImageCarouselError,
+  setMinimumPriceSuccess,
+  setMinimumPriceError,
+  getMinimumPriceError,
+  getMinimumPriceSuccess,
   //plopImportAction
 } from "../actions/SettingsActions.js";
 import {
@@ -17,6 +21,8 @@ import {
   SAVE_IMAGE_CAROUSEL_INIT,
   GET_IMAGE_CAROUSEL_INIT,
   DELETE_IMAGE_CAROUSEL_INIT,
+  SET_MINIMUM_PRICE_INIT,
+  GET_MINIMUM_PRICE_INIT
   //plopImportConstant
 } from "redux/constants/SettingsConstants.js";
 
@@ -32,6 +38,29 @@ export function* SetWithdrawalPercentage() {
     }
   });
 }
+
+export function* setMinimumPrice() {
+  yield takeEvery(SET_MINIMUM_PRICE_INIT, function* (action) {
+    try {
+      yield call(FirebaseService.setMinimumPrice, action);
+      yield put(setMinimumPriceSuccess(action.data));
+    } catch (error) {
+      yield put(setMinimumPriceError(error));
+    }
+  });
+}
+
+export function* getMinimumPrice() {
+  yield takeEvery(GET_MINIMUM_PRICE_INIT, function* (action) {
+    try {
+      yield call(FirebaseService.getMinimumPrice, action);
+      yield put(getMinimumPriceSuccess(action.data));
+    } catch (error) {
+      yield put(getMinimumPriceError(error));
+    }
+  });
+}
+
 export function* getWithdrawalSettings() {
   yield takeEvery(GET_WITHDRAWAL_SETTINGS_INIT, function* () {
     try {
@@ -104,6 +133,8 @@ export default function* rootSaga() {
     fork(saveImageCarousel),
     fork(getImageCarousel),
     fork(deleteImageCarousel),
+    fork(setMinimumPrice),
+    fork(getMinimumPrice),
     //plopExport
   ]);
 }

@@ -4,6 +4,8 @@ import {
   DollarCircleOutlined,
   SwapOutlined,
   SettingOutlined,
+  GlobalOutlined,
+  AppstoreOutlined,
 } from "@ant-design/icons";
 import { APP_PREFIX_PATH } from "configs/AppConfig";
 const dashBoardNavTree = [
@@ -41,7 +43,7 @@ const LawyerCategoryNavTree = [
     key: "lawyer-category",
     path: `${APP_PREFIX_PATH}/lawyer-category`,
     title: "Lawyer Category",
-    icon: UserOutlined,
+    icon: AppstoreOutlined,
     breadcrumb: false,
     submenu: [],
   },
@@ -51,7 +53,7 @@ const CountryNavTree = [
     key: "country",
     path: `${APP_PREFIX_PATH}/country`,
     title: "Country",
-    icon: UserOutlined,
+    icon: GlobalOutlined,
     breadcrumb: false,
     submenu: [],
   },

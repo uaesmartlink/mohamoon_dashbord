@@ -44,7 +44,13 @@ const Lawyers = () => {
 
   // eslint-disable-next-line array-callback-return
   lawyerList.map(el => {
-    let date = new Date(el.createdAt)
+    let date = new Date(el.createdAt);
+    el.categories = "{";
+    el.lawyerCategory.forEach(element => {
+      el.categories += element.categoryName + ", ";
+    });
+    el.categories = el.categories.substring(0,el.categories.length - 2);
+    el.categories += "}";
     el.createdAt_newFormate = date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+"\n"+dateFormat(date.getHours())+":"+dateFormat(date.getMinutes());
   });
 
@@ -101,8 +107,8 @@ const Lawyers = () => {
     */
     {
       title: "Category / Specialist",
-      dataIndex: ["lawyerCategory", "categoryName"],
-      key: "lawyerHospital",
+      dataIndex: "categories",
+      key: "categories",
     },
     {
       title: "Account Status",

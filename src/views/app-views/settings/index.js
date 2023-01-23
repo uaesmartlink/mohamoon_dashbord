@@ -22,6 +22,8 @@ import {
 //  getImageCarouselInit,
   getWithdrawalSettingsInit,
   setWithdrawalPercentageInit,
+  getMinimumPriceInit,
+  setMinimumPriceInit,
 } from "redux/actions/SettingsActions";
 //import { Link, useHistory } from "react-router-dom";
 const Settings = () => {
@@ -49,11 +51,13 @@ const Settings = () => {
     }),
     shallowEqual
   );
+  console.log(settings);
   const { TabPane } = Tabs;
   const dispatch = useDispatch();
   const { confirm } = Modal;
   useEffect(() => {
     dispatch(getWithdrawalSettingsInit());
+    dispatch(getMinimumPriceInit());
   //  dispatch(getImageCarouselInit());
   }, [dispatch]);
   //const history = useHistory();
@@ -117,6 +121,7 @@ const Settings = () => {
       );
     }
     dispatch(setWithdrawalPercentageInit(data));
+    dispatch(setMinimumPriceInit(data));
   }
   function onFinishFailed(error) {
     openNotificationError(error);
@@ -136,6 +141,7 @@ return (
                     initialValues={{
                       percentage: settings.percentage,
                       tax: settings.tax,
+                      minimumPrice: settings.minimumPrice,
                     }}
                     onFinish={showPromiseConfirm}
                     onFinishFailed={onFinishFailed}
@@ -157,7 +163,23 @@ return (
                         style={{ width: " 20% " }}
                         max={99}
                       />
+                      
                     </Form.Item>
+                    <Form.Item
+                      label="Minimum Price"
+                      name="minimumPrice"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input the number",
+                        },
+                      ]}
+                    >
+                      <InputNumber
+                        style={{ width: " 20% " }}
+                        min={0}
+                      />
+                      </Form.Item>
                     <Form.Item label="Tax" name="tax">
                       <InputNumber
                         formatter={(value) => `${value}%`}

@@ -45,7 +45,7 @@ FirebaseService.fetchDocument = async (collection, id) => {
   if (!document.exists) return null;
   return { id: document.id, ...document.data() };
 };
-
+//setMinimumPrice
 FirebaseService.fetchCollection = async (collection, options = {}) => {
   const data = [];
   let baseQuery = getFirestoreRef(collection);
@@ -246,6 +246,27 @@ FirebaseService.setPercentage = async (data) => {
     .collection("Settings")
     .doc("withdrawSetting")
     .set({ percentage: data.data.percentage, tax: data.data.tax });
+};
+
+FirebaseService.setMinimumPrice = async (data) => {
+  await db
+    .collection("Settings")
+    .doc("minimumPrice")
+    .set({ minimumPrice: data.data.minimumPrice});
+};
+FirebaseService.getMinimumPrice = async (data) => {
+  try {
+    let snapshot = await db.collection("Settings").doc("minimumPrice").get();
+    if (!snapshot.exists) return {};
+    return snapshot.data();
+  } catch (error) {
+    console.log(
+      "🚀 ~ file: FirebaseService.js ~ line 206 ~ FirebaseService.getWithdrawalSettings= ~ error",
+      error
+    );
+    throw error;
+  }
+
 };
 
 FirebaseService.getWithdrawalSettings = async () => {

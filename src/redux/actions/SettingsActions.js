@@ -14,6 +14,12 @@ import {
   SET_WITHDRAWAL_PERCENTAGE_INIT,
   SET_WITHDRAWAL_PERCENTAGE_SUCCESS,
   SET_WITHDRAWAL_PERCENTAGE_ERROR,
+  SET_MINIMUM_PRICE_ERROR,
+  SET_MINIMUM_PRICE_INIT,
+  SET_MINIMUM_PRICE_SUCCESS,
+  GET_MINIMUM_PRICE_ERROR,
+  GET_MINIMUM_PRICE_INIT,
+  GET_MINIMUM_PRICE_SUCCESS,
 } from "../constants/SettingsConstants.js";
 
 export const setWithdrawalPercentageInit = (data) => ({
@@ -30,6 +36,37 @@ export const setWithdrawalPercentageError = (error) => ({
   type: SET_WITHDRAWAL_PERCENTAGE_ERROR,
   error,
 });
+
+export const setMinimumPriceInit = (data) => ({
+  type: SET_MINIMUM_PRICE_INIT,
+  data,
+});
+
+export const setMinimumPriceSuccess = (data) => ({
+  type: SET_MINIMUM_PRICE_SUCCESS,
+  data,
+});
+
+export const setMinimumPriceError = (error) => ({
+  type: SET_MINIMUM_PRICE_ERROR,
+  error,
+});
+
+export const getMinimumPriceInit = (data) => ({
+  type: GET_MINIMUM_PRICE_INIT,
+  data,
+});
+
+export const getMinimumPriceSuccess = (data) => ({
+  type: GET_MINIMUM_PRICE_SUCCESS,
+  data,
+});
+
+export const getMinimumPriceError = (error) => ({
+  type: GET_MINIMUM_PRICE_ERROR,
+  error,
+});
+
 export const getWithdrawalSettingsInit = () => ({
   type: GET_WITHDRAWAL_SETTINGS_INIT,
 });

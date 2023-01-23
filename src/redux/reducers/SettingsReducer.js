@@ -14,6 +14,12 @@ import {
   SET_WITHDRAWAL_PERCENTAGE_INIT,
   SET_WITHDRAWAL_PERCENTAGE_SUCCESS,
   SET_WITHDRAWAL_PERCENTAGE_ERROR,
+  SET_MINIMUM_PRICE_ERROR,
+  SET_MINIMUM_PRICE_INIT,
+  SET_MINIMUM_PRICE_SUCCESS,
+  GET_MINIMUM_PRICE_ERROR,
+  GET_MINIMUM_PRICE_INIT,
+  GET_MINIMUM_PRICE_SUCCESS,
 } from "../constants/SettingsConstants.js";
 
 const initialState = {
@@ -42,6 +48,18 @@ const settings = (state = initialState, action) => {
       return { ...state, success: true, data: action.data, loading: false };
     case SET_WITHDRAWAL_PERCENTAGE_ERROR:
       return { ...state, error: action.error, loading: false };
+    case SET_MINIMUM_PRICE_INIT:
+      return { ...state, loading: true };
+    case SET_MINIMUM_PRICE_SUCCESS:
+      return { ...state, success: true, data: action.data, loading: false };
+    case SET_MINIMUM_PRICE_ERROR:
+      return { ...state, error: action.error, loading: false };
+      case GET_MINIMUM_PRICE_INIT:
+        return { ...state, loading: true };
+      case GET_MINIMUM_PRICE_SUCCESS:
+        return { ...state, success: true, data: action.data, loading: false };
+      case GET_MINIMUM_PRICE_ERROR:
+        return { ...state, error: action.error, loading: false };
     case GET_WITHDRAWAL_SETTINGS_INIT:
       return { ...state, loading: true };
     case GET_WITHDRAWAL_SETTINGS_SUCCESS:
